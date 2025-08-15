@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, MessageCircle } from "lucide-react";
 
 const ContactSection = () => {
   const contactMethods = [
@@ -55,9 +55,16 @@ const ContactSection = () => {
                   {method.description}
                 </p>
                 
-                <p className="text-foreground font-medium whitespace-pre-line">
-                  {method.info}
-                </p>
+                <div className="text-foreground font-medium whitespace-pre-line">
+                  {method.title === "Telefone" ? (
+                    <div className="flex items-center justify-center gap-2">
+                      <MessageCircle className="w-5 h-5 text-green-500" />
+                      <span>{method.info}</span>
+                    </div>
+                  ) : (
+                    <span>{method.info}</span>
+                  )}
+                </div>
               </CardContent>
             </Card>
           ))}

@@ -121,10 +121,10 @@ const PricingSection = () => {
 
               <CardContent className="space-y-6">
                 <Button 
-                  className={`w-full ${
+                  className={`w-full transition-all duration-300 ${
                     plan.highlight 
                       ? 'btn-primary' 
-                      : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
+                      : 'bg-secondary text-secondary-foreground hover:bg-secondary/80 hover:scale-105 hover:shadow-lg'
                   }`}
                 >
                   Doar
@@ -152,20 +152,6 @@ const PricingSection = () => {
               </CardContent>
             </Card>
           ))}
-        </div>
-
-        {/* Bottom CTA */}
-        <div className="text-center bg-gradient-card rounded-3xl p-8">
-          <h3 className="text-2xl font-bold text-foreground mb-4">
-            Junte-se à corrente do bem
-          </h3>
-          <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Sua participação transforma vidas: apoie pacientes, incentive a prevenção e
-            fortaleça nossa rede de solidariedade. Doe, compre, compartilhe esperança.
-          </p>
-          <Button className="btn-primary">
-            Contribua
-          </Button>
         </div>
       </div>
     </section>

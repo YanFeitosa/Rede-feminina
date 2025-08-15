@@ -40,43 +40,20 @@ const HeroSection = () => {
             </Button>
           </div>
 
-          {/* Animated Images Grid */}
-          <div className="relative h-[600px] overflow-hidden">
-            {/* First row - moving up */}
-            <div className="absolute top-0 left-0 w-full flex gap-4 animate-float-up">
-              <div className="flex gap-4 min-w-max">
-                {images.slice(0, 3).map((image, index) => (
-                  <div
-                    key={`up-${index}`}
-                    className="w-64 h-40 rounded-2xl overflow-hidden shadow-card"
-                  >
-                    <img
-                      src={image.src}
-                      alt={image.alt}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                ))}
+          {/* Static Images Grid */}
+          <div className="grid grid-cols-2 gap-4 h-[600px]">
+            {images.map((image, index) => (
+              <div
+                key={index}
+                className="rounded-2xl overflow-hidden shadow-card hover:shadow-lg transition-shadow duration-300"
+              >
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-full h-full object-cover"
+                />
               </div>
-            </div>
-
-            {/* Second row - moving down */}
-            <div className="absolute top-48 left-8 w-full flex gap-4 animate-float-down">
-              <div className="flex gap-4 min-w-max">
-                {images.slice(3, 6).map((image, index) => (
-                  <div
-                    key={`down-${index}`}
-                    className="w-64 h-40 rounded-2xl overflow-hidden shadow-card"
-                  >
-                    <img
-                      src={image.src}
-                      alt={image.alt}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>

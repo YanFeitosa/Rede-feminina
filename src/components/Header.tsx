@@ -17,14 +17,14 @@ const Header = () => {
           {/* Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-              Soluções
-            </a>
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
               Quem somos
             </a>
             <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
               Notícias
             </a>
+            <Button variant="ghost" className="text-muted-foreground hover:text-foreground transition-colors">
+              Loja
+            </Button>
             <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
               Ajuda
             </a>
@@ -32,7 +32,7 @@ const Header = () => {
 
           {/* CTA Button */}
           <Button className="btn-primary">
-            Doe
+            Doar
           </Button>
         </div>
       </div>

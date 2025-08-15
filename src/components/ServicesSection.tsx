@@ -39,7 +39,7 @@ const ServicesSection = () => {
               apoio e solidariedade.
             </p>
             
-            <Button className="btn-primary">
+            <Button className="btn-primary text-xl px-12 py-8">
               Loja solidária
             </Button>
           </div>
