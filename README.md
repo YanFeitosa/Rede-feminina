@@ -6,15 +6,6 @@ Um site moderno e responsivo para a ONG Rede Feminina, dedicada ao acolhimento, 
 
 A Rede Feminina é uma organização que oferece acolhimento humano, informações sobre prevenção e uma rede de apoio solidário para quem enfrenta o câncer. Este site apresenta os serviços da ONG, planos de apoio e facilita o contato com a comunidade.
 
-### ✨ Funcionalidades
-
-- **Design Responsivo**: Interface adaptada para desktop, tablet e mobile
-- **Seções Informativas**: Hero, Serviços, Planos de Apoio, Depoimentos, FAQ e Contato
-- **Loja Solidária**: Destaque para produtos feitos por pacientes e voluntárias
-- **Planos de Doação**: Sistema de apoio com diferentes níveis de contribuição
-- **Contato Integrado**: WhatsApp, e-mail e endereço físico
-- **UI Moderna**: Componentes elegantes com efeitos hover e transições suaves
-
 ## 🛠️ Tecnologias Utilizadas
 
 - **React 18** - Biblioteca JavaScript para interfaces
@@ -65,7 +56,7 @@ A Rede Feminina é uma organização que oferece acolhimento humano, informaçõ
 
 4. **Acesse no navegador**
    ```
-   http://localhost:5173
+   http://localhost:8080
    ```
 
 ### 📋 Scripts Disponíveis
@@ -97,23 +88,6 @@ src/
 ├── lib/                 # Utilitários
 └── assets/              # Imagens e recursos
 ```
-
-## 🎨 Design System
-
-### Cores Principais
-- **Primary**: Cor principal da marca
-- **Secondary**: Cor secundária
-- **Accent**: Cor de destaque
-- **Muted**: Cores neutras para texto
-
-### Componentes UI
-- Botões com efeitos hover
-- Cards com sombras suaves
-- Formulários acessíveis
-- Navegação responsiva
-- Grid system flexível
-
-## 📱 Seções do Site
 
 ### 🏠 Hero Section
 - Apresentação da missão da ONG
@@ -150,14 +124,6 @@ src/
 - E-mail institucional
 - Endereço físico
 - Horários de funcionamento
-
-## 🔧 Customizações Implementadas
-
-- **Efeitos Hover**: Botões com scale e shadow effects
-- **Ícone WhatsApp**: Visual verde ao lado do telefone  
-- **Navegação Otimizada**: Loja em destaque na navbar
-- **Layout Responsivo**: Adaptado para todos os dispositivos
-- **Performance**: Otimizado com Vite e componentes lazy
 
 ## 🌐 Deploy
 
