@@ -1,73 +1,200 @@
-# Welcome to your Lovable project
+# 🌸 Rede Feminina - Site Institucional
 
-## Project info
+Um site moderno e responsivo para a ONG Rede Feminina, dedicada ao acolhimento, prevenção e apoio a pessoas que enfrentam o câncer.
 
-**URL**: https://lovable.dev/projects/093d0911-8c76-455f-970c-88c4caf16183
+## 🎯 Sobre o Projeto
 
-## How can I edit this code?
+A Rede Feminina é uma organização que oferece acolhimento humano, informações sobre prevenção e uma rede de apoio solidário para quem enfrenta o câncer. Este site apresenta os serviços da ONG, planos de apoio e facilita o contato com a comunidade.
 
-There are several ways of editing your application.
+### ✨ Funcionalidades
 
-**Use Lovable**
+- **Design Responsivo**: Interface adaptada para desktop, tablet e mobile
+- **Seções Informativas**: Hero, Serviços, Planos de Apoio, Depoimentos, FAQ e Contato
+- **Loja Solidária**: Destaque para produtos feitos por pacientes e voluntárias
+- **Planos de Doação**: Sistema de apoio com diferentes níveis de contribuição
+- **Contato Integrado**: WhatsApp, e-mail e endereço físico
+- **UI Moderna**: Componentes elegantes com efeitos hover e transições suaves
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/093d0911-8c76-455f-970c-88c4caf16183) and start prompting.
+## 🛠️ Tecnologias Utilizadas
 
-Changes made via Lovable will be committed automatically to this repo.
+- **React 18** - Biblioteca JavaScript para interfaces
+- **TypeScript** - Tipagem estática para JavaScript
+- **Vite** - Build tool rápido e moderno
+- **TailwindCSS** - Framework CSS utilitário
+- **Radix UI** - Componentes acessíveis e customizáveis
+- **Lucide React** - Ícones modernos e consistentes
+- **React Router** - Roteamento para SPA
 
-**Use your preferred IDE**
+### 📦 Principais Dependências
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```json
+{
+  "react": "^18.3.1",
+  "typescript": "^5.8.3",
+  "vite": "^5.4.19",
+  "tailwindcss": "^3.4.17",
+  "@radix-ui/react-*": "Componentes UI",
+  "lucide-react": "^0.462.0"
+}
 ```
 
-**Edit a file directly in GitHub**
+## 🚀 Como Executar
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Pré-requisitos
 
-**Use GitHub Codespaces**
+- Node.js 18+ 
+- npm ou yarn
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Instalação
 
-## What technologies are used for this project?
+1. **Clone o repositório**
+   ```bash
+   git clone https://github.com/YanFeitosa/Rede-feminina.git
+   cd Rede-feminina
+   ```
 
-This project is built with:
+2. **Instale as dependências**
+   ```bash
+   npm install
+   ```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+3. **Execute em modo desenvolvimento**
+   ```bash
+   npm run dev
+   ```
 
-## How can I deploy this project?
+4. **Acesse no navegador**
+   ```
+   http://localhost:5173
+   ```
 
-Simply open [Lovable](https://lovable.dev/projects/093d0911-8c76-455f-970c-88c4caf16183) and click on Share -> Publish.
+### 📋 Scripts Disponíveis
 
-## Can I connect a custom domain to my Lovable project?
+```bash
+npm run dev      # Servidor de desenvolvimento
+npm run build    # Build de produção
+npm run preview  # Preview da build
+npm run lint     # Verificação de código
+```
 
-Yes, you can!
+## 🏗️ Estrutura do Projeto
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+```
+src/
+├── components/           # Componentes React
+│   ├── ui/              # Componentes base (shadcn/ui)
+│   ├── Header.tsx       # Cabeçalho e navegação
+│   ├── HeroSection.tsx  # Seção principal
+│   ├── ServicesSection.tsx    # Serviços da ONG
+│   ├── PartnersSection.tsx    # Parceiros e sobre
+│   ├── PricingSection.tsx     # Planos de apoio
+│   ├── TestimonialsSection.tsx # Depoimentos
+│   ├── FAQSection.tsx         # Perguntas frequentes
+│   ├── ContactSection.tsx     # Contato
+│   └── Footer.tsx             # Rodapé
+├── pages/               # Páginas da aplicação
+├── hooks/               # Custom hooks
+├── lib/                 # Utilitários
+└── assets/              # Imagens e recursos
+```
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## 🎨 Design System
+
+### Cores Principais
+- **Primary**: Cor principal da marca
+- **Secondary**: Cor secundária
+- **Accent**: Cor de destaque
+- **Muted**: Cores neutras para texto
+
+### Componentes UI
+- Botões com efeitos hover
+- Cards com sombras suaves
+- Formulários acessíveis
+- Navegação responsiva
+- Grid system flexível
+
+## 📱 Seções do Site
+
+### 🏠 Hero Section
+- Apresentação da missão da ONG
+- Call-to-action principal
+- Grid de imagens representativas
+
+### 🛍️ Services Section
+- Loja solidária em destaque
+- Produtos feitos por pacientes
+- Botão ampliado para maior conversão
+
+### 🤝 Partners Section
+- Informações sobre a ONG
+- Missão e valores
+- Rede de apoio
+
+### 💝 Pricing Section
+- 4 planos de apoio diferentes
+- Benefícios detalhados
+- Botões de doação com hover effects
+
+### 💬 Testimonials Section
+- Depoimentos reais
+- Histórias inspiradoras
+- Carrossel responsivo
+
+### ❓ FAQ Section
+- Perguntas frequentes
+- Accordion interativo
+- Informações essenciais
+
+### 📞 Contact Section
+- WhatsApp com ícone visual
+- E-mail institucional
+- Endereço físico
+- Horários de funcionamento
+
+## 🔧 Customizações Implementadas
+
+- **Efeitos Hover**: Botões com scale e shadow effects
+- **Ícone WhatsApp**: Visual verde ao lado do telefone  
+- **Navegação Otimizada**: Loja em destaque na navbar
+- **Layout Responsivo**: Adaptado para todos os dispositivos
+- **Performance**: Otimizado com Vite e componentes lazy
+
+## 🌐 Deploy
+
+### Vercel (Recomendado)
+```bash
+npm run build
+# Deploy automático via GitHub
+```
+
+### Netlify
+```bash
+npm run build
+# Upload da pasta dist/
+```
+
+## 🤝 Contribuição
+
+1. Fork o projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+## 👥 Contato
+
+**Rede Feminina**
+- 📧 Email: contato@redefeminina.org
+- 📱 WhatsApp: (083) 3241-5373
+- 📍 Endereço: Av. Doze de Outubro, 858 - Jaguaribe, João Pessoa
+
+---
+
+<div align="center">
+  <p>Feito com ❤️ para apoiar quem enfrenta o câncer</p>
+  <p><strong>Juntas por vidas mais fortes</strong></p>
+</div>
