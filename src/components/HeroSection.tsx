@@ -1,19 +1,19 @@
 import { Button } from "@/components/ui/button";
-import heroYoga from "@/assets/hero-yoga.jpg";
-import heroMedical from "@/assets/hero-medical.jpg";
-import heroVolunteers from "@/assets/hero-volunteers.jpg";
-import heroFacility from "@/assets/hero-facility.jpg";
-import heroTeam from "@/assets/hero-team.jpg";
-import heroEducation from "@/assets/hero-education.jpg";
+import img01 from "@/assets/img_01.png";
+import img02 from "@/assets/img_02.png";
+import img03 from "@/assets/img_03.png";
+import img04 from "@/assets/img_04.png";
+import img05 from "@/assets/img_05.png";
+import img06 from "@/assets/img_06.png";
 
 const HeroSection = () => {
   const images = [
-    { src: heroYoga, alt: "Yoga em grupo" },
-    { src: heroMedical, alt: "Consulta médica" },
-    { src: heroVolunteers, alt: "Voluntárias" },
-    { src: heroFacility, alt: "Instalações" },
-    { src: heroTeam, alt: "Equipe médica" },
-    { src: heroEducation, alt: "Educação" },
+    { src: img01, alt: "Rede Feminina - Atividade 1" },
+    { src: img02, alt: "Rede Feminina - Atividade 2" },
+    { src: img03, alt: "Rede Feminina - Atividade 3" },
+    { src: img04, alt: "Rede Feminina - Atividade 4" },
+    { src: img05, alt: "Rede Feminina - Atividade 5" },
+    { src: img06, alt: "Rede Feminina - Atividade 6" },
   ];
 
   return (
@@ -23,16 +23,13 @@ const HeroSection = () => {
           {/* Content */}
           <div className="space-y-8">
             <h1 className="text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-              Juntas por vidas
+              Juntos por vidas
               <br />
               <span className="text-primary">mais fortes</span>
             </h1>
             
             <p className="text-lg text-muted-foreground leading-relaxed max-w-md">
-              Acolhimento, prevenção e esperança para quem
-              enfrenta o câncer. Faça parte dessa rede de
-              apoio, participe das ações e conheça nossa loja
-              solidária com produtos feitos por pacientes.
+              Acolhimento, prevenção e esperança para quem enfrenta o câncer. Faça parte dessa rede de apoio, participe das ações e conheça o Bazar solidário.
             </p>
 
             <Button className="btn-primary text-lg px-10 py-6">

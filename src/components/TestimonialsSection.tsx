@@ -1,18 +1,16 @@
 import { Card, CardContent } from "@/components/ui/card";
-import testimonial1 from "@/assets/testimonial-1.jpg";
-import testimonial2 from "@/assets/testimonial-2.jpg";
 
 const TestimonialsSection = () => {
   const testimonials = [
     {
       name: "Rafaela Nunes",
       text: "O cuidado das voluntárias me acolheu nos dias mais difíceis. Senti que não estava sozinha e ganhei forças para seguir lutando.",
-      avatar: testimonial1
+      avatar: "/placeholder.svg"
     },
     {
       name: "Gabriel Tavares", 
       text: "Recebi apoio verdadeiro e esperança renovada. Minha família e eu fomos abraçados por uma rede de carinho durante todo o tratamento.",
-      avatar: testimonial2
+      avatar: "/placeholder.svg"
     }
   ];
 
@@ -28,7 +26,7 @@ const TestimonialsSection = () => {
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             Descubra relatos emocionantes de quem encontrou acolhimento, força e
-            carinho em nossa rede. Essas experiências mostram como o apoio
+            carinho na RFCC.PB. Essas experiências mostram como o apoio
             transforma vidas e inspira novas jornadas de coragem.
           </p>
         </div>

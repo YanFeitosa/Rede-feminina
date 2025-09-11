@@ -26,19 +26,6 @@ const ContactSection = () => {
   return (
     <section className="py-20 bg-gradient-warm">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <p className="text-sm text-muted-foreground uppercase tracking-wider mb-4">
-            FALE COM A GENTE
-          </p>
-          <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
-            Acolhimento começa aqui
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Estamos ao seu lado em cada etapa. Tire dúvidas, peça
-            orientação ou participe das nossas ações de apoio e prevenção.
-          </p>
-        </div>
-
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {contactMethods.map((method, index) => (
             <Card key={index} className="card-soft text-center">
@@ -68,6 +55,35 @@ const ContactSection = () => {
               </CardContent>
             </Card>
           ))}
+        </div>
+
+        {/* Donations Section */}
+        <div className="max-w-4xl mx-auto mt-16">
+          <div className="text-center mb-12">
+            <h3 className="text-3xl font-bold text-foreground mb-4">
+              Contribua via Pix ou Depósito Bancário
+            </h3>
+            <p className="text-lg text-muted-foreground">
+              Faça doações únicas ou periódicas e ajude a manter nossos projetos ativos. Sua contribuição faz a diferença na vida de quem enfrenta o câncer.
+            </p>
+          </div>
+          
+          <div className="bg-white/50 rounded-2xl p-8 text-center shadow-soft">
+            <h4 className="text-xl font-semibold text-foreground mb-4">
+              Formas de Contribuir
+            </h4>
+            <p className="text-muted-foreground mb-6">
+              Escolha a forma que preferir: doação única via Pix para agilidade ou depósito bancário para contribuições maiores. Toda ajuda é bem-vinda.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button className="bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors">
+                Doar via Pix
+              </button>
+              <button className="bg-secondary text-secondary-foreground px-6 py-3 rounded-lg font-medium hover:bg-secondary/80 transition-colors">
+                Depósito Bancário
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -37,9 +37,7 @@ const FAQSection = () => {
                 Perguntas frequentes, respostas acolhedoras
               </h2>
               <p className="text-lg text-muted-foreground">
-                Tire suas dúvidas sobre apoio, voluntariado,
-                doações e nossa loja solidária. Estamos aqui
-                para ajudar você e sua família em cada etapa.
+                Tire suas dúvidas.
               </p>
             </div>
             
