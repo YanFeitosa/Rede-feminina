@@ -17,7 +17,7 @@ const ServicesSection = () => {
               apoio e solidariedade.
             </p>
             
-            <Button className="btn-primary text-xl px-12 py-8">
+            <Button className="btn-primary text-xl px-12 py-8" type="button" onClick={() => { console.log('Bazar clicked'); window.location.href = 'https://rede-feminina-colab.onrender.com/'; }}>
               Bazar solidário
             </Button>
           </div>

@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Star } from "lucide-react";
+import logo from "@/assets/logo_rfcc.webp";
 
 const Header = () => {
   return (
@@ -8,9 +8,7 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <Star className="w-5 h-5 text-primary-foreground" />
-            </div>
+            <img src={logo} alt="RFCC Logo" className="w-8 h-8 rounded-lg" />
             <span className="text-xl font-bold text-foreground">RFCC.PB</span>
           </div>
 
@@ -22,8 +20,8 @@ const Header = () => {
             <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
               Notícias
             </a>
-            <Button variant="ghost" className="text-muted-foreground hover:text-foreground transition-colors">
-              Loja
+            <Button variant="ghost" className="text-muted-foreground hover:text-foreground transition-colors" type="button" onClick={() => window.location.href = 'https://rede-feminina-colab.onrender.com/'}>
+              Bazar
             </Button>
             <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
               Ajuda
