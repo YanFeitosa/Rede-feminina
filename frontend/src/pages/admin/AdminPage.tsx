@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import AdminLogin from './AdminLogin';
 import AdminDashboard from './AdminDashboard';
+import Header from '@/components/Header';
 
 const AdminPage = () => {
   const [user, setUser] = useState(null);
@@ -66,17 +67,20 @@ const AdminPage = () => {
   }
 
   return (
-    <>
-      {user && token ? (
-        <AdminDashboard 
-          user={user} 
-          token={token} 
-          onLogout={handleLogout} 
-        />
-      ) : (
-        <AdminLogin onLogin={handleLogin} />
-      )}
-    </>
+    <div className="min-h-screen flex flex-col bg-gradient-warm">
+      <Header adminMode />
+      <div className="flex-grow">
+        {user && token ? (
+          <AdminDashboard 
+            user={user} 
+            token={token} 
+            onLogout={handleLogout} 
+          />
+        ) : (
+          <AdminLogin onLogin={handleLogin} />
+        )}
+      </div>
+    </div>
   );
 };
 

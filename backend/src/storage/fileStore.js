@@ -2,6 +2,7 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import bcrypt from 'bcryptjs';
+import logger from '../utils/logger.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -76,6 +77,11 @@ export async function updateUser(user) {
   return user;
 }
 
+export async function getUserById(id) {
+  const data = await loadData();
+  return data.users.find(u => u.id === id) || null;
+}
+
 export async function ensureDefaultAdmin() {
   const email = process.env.ADMIN_EMAIL;
   const password = process.env.ADMIN_PASSWORD;
@@ -83,9 +89,9 @@ export async function ensureDefaultAdmin() {
   const existing = await getUserByEmail(email);
   if (!existing) {
     await createUser({ email, password, role: 'admin' });
-    console.log('✅ Default admin user (file DB) created');
+  logger.log('✅ Default admin user (file DB) created');
   } else {
-    console.log('✅ Admin user (file DB) already exists');
+  logger.log('✅ Admin user (file DB) already exists');
   }
 }
 
@@ -251,5 +257,5 @@ export async function getAllContent() {
 export async function initFileStore() {
   await loadData();
   await ensureDefaultAdmin();
-  console.log('🗂️ File storage initialized');
+  logger.log('🗂️ File storage initialized');
 }

@@ -5,6 +5,36 @@ import { authenticateToken, requireAdmin } from '../middleware/auth.js';
 
 const router = express.Router();
 
+// Helper to strip fields we never want to accept from client (timestamps / ids)
+function sanitizePayload(body) {
+  if (!body || typeof body !== 'object') return body;
+  const { updatedAt, createdAt, _id, __v, id, ...rest } = body; // drop these
+  // Also sanitize nested arrays/objects that might carry timestamps (e.g., images, contactMethods)
+  if (Array.isArray(rest.images)) {
+    rest.images = rest.images.map(img => {
+      if (img && typeof img === 'object') {
+        const { updatedAt: iu, createdAt: ic, _id: iid, __v: iv, ...iRest } = img;
+        return iRest;
+      }
+      return img;
+    });
+  }
+  if (Array.isArray(rest.contactMethods)) {
+    rest.contactMethods = rest.contactMethods.map(m => {
+      if (m && typeof m === 'object') {
+        const { updatedAt: mu, createdAt: mc, _id: mid, __v: mv, id: mid2, ...mRest } = m;
+        return mRest;
+      }
+      return m;
+    });
+  }
+  if (rest.bankInfo && typeof rest.bankInfo === 'object') {
+    const { updatedAt: bu, createdAt: bc, _id: bid, __v: bv, id: bid2, ...bRest } = rest.bankInfo;
+    rest.bankInfo = bRest;
+  }
+  return rest;
+}
+
 // Validation schemas
 const heroSectionSchema = Joi.object({
   title: Joi.string().required(),
@@ -79,12 +109,12 @@ router.get('/hero', async (req, res) => {
 // @access  Private (Admin only)
 router.put('/hero', authenticateToken, requireAdmin, async (req, res) => {
   try {
-    const { error } = heroSectionSchema.validate(req.body);
+    const payload = sanitizePayload(req.body);
+    const { error } = heroSectionSchema.validate(payload);
     if (error) {
       return res.status(400).json({ message: error.details[0].message });
     }
-
-    const updated = await updateHero(req.body);
+    const updated = await updateHero(payload);
     res.json({ message: 'Hero section updated successfully', data: updated });
   } catch (error) {
     console.error('Update hero section error:', error);
@@ -112,12 +142,12 @@ router.get('/services', async (req, res) => {
 // @access  Private (Admin only)
 router.put('/services', authenticateToken, requireAdmin, async (req, res) => {
   try {
-    const { error } = servicesSectionSchema.validate(req.body);
+    const payload = sanitizePayload(req.body);
+    const { error } = servicesSectionSchema.validate(payload);
     if (error) {
       return res.status(400).json({ message: error.details[0].message });
     }
-
-    const updated = await updateServices(req.body);
+    const updated = await updateServices(payload);
     res.json({ message: 'Services section updated successfully', data: updated });
   } catch (error) {
     console.error('Update services section error:', error);
@@ -145,12 +175,12 @@ router.get('/pricing', async (req, res) => {
 // @access  Private (Admin only)
 router.put('/pricing', authenticateToken, requireAdmin, async (req, res) => {
   try {
-    const { error } = pricingSectionSchema.validate(req.body);
+    const payload = sanitizePayload(req.body);
+    const { error } = pricingSectionSchema.validate(payload);
     if (error) {
       return res.status(400).json({ message: error.details[0].message });
     }
-
-    const updated = await updatePricing(req.body);
+    const updated = await updatePricing(payload);
     res.json({ message: 'Pricing section updated successfully', data: updated });
   } catch (error) {
     console.error('Update pricing section error:', error);
@@ -178,12 +208,12 @@ router.get('/contact', async (req, res) => {
 // @access  Private (Admin only)
 router.put('/contact', authenticateToken, requireAdmin, async (req, res) => {
   try {
-    const { error } = contactSectionSchema.validate(req.body);
+    const payload = sanitizePayload(req.body);
+    const { error } = contactSectionSchema.validate(payload);
     if (error) {
       return res.status(400).json({ message: error.details[0].message });
     }
-
-    const updated = await updateContact(req.body);
+    const updated = await updateContact(payload);
     res.json({ message: 'Contact section updated successfully', data: updated });
   } catch (error) {
     console.error('Update contact section error:', error);

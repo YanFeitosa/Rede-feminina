@@ -8,6 +8,7 @@ import { fileURLToPath } from 'url';
 
 import connectDB from './config/database.js';
 import { initFileStore } from './storage/fileStore.js';
+import logger from './utils/logger.js';
 import authRoutes from './routes/auth.js';
 import contentRoutes from './routes/content.js';
 import uploadRoutes from './routes/upload.js';
@@ -24,10 +25,9 @@ const PORT = process.env.PORT || 3001;
 
 // Storage mode
 if (process.env.USE_FILE_DB === 'true') {
-  console.log('🗂️ Using file-based storage (no MongoDB)');
+  logger.log('🗂️ Using file-based storage (no MongoDB)');
   initFileStore();
 } else {
-  // Connect to MongoDB
   connectDB();
 }
 
@@ -42,13 +42,26 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
-// CORS configuration
+// CORS configuration with dynamic origins
+const defaultDevOrigins = ['http://localhost:5173', 'http://localhost:3000', 'http://localhost:8080'];
+const allowedOrigins = (process.env.FRONTEND_ORIGINS || '')
+  .split(',')
+  .map(o => o.trim())
+  .filter(Boolean);
+const origins = process.env.NODE_ENV === 'production'
+  ? allowedOrigins.length ? allowedOrigins : ['https://your-frontend-domain.com']
+  : [...new Set([...defaultDevOrigins, ...allowedOrigins])];
+
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' 
-    ? ['https://your-frontend-domain.com'] 
-    : ['http://localhost:5173', 'http://localhost:3000'],
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true); // Allow non-browser like curl
+    if (origins.includes(origin)) return callback(null, true);
+    return callback(new Error('CORS not allowed for origin: ' + origin));
+  },
   credentials: true
 }));
+
+logger.log('🔐 CORS allowed origins:', origins);
 
 // Body parsing middleware
 app.use(express.json({ limit: '10mb' }));
@@ -76,9 +89,9 @@ app.use('*', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
-  console.log(`📊 Environment: ${process.env.NODE_ENV}`);
-  console.log(`🔗 API Base URL: http://localhost:${PORT}/api`);
+  logger.log(`🚀 Server running on port ${PORT}`);
+  logger.log(`📊 Environment: ${process.env.NODE_ENV}`);
+  logger.log(`🔗 API Base URL: http://localhost:${PORT}/api`);
 });
 
 export default app;

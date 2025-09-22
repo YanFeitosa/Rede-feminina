@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import User from '../models/User.js';
+import { findUserById } from '../services/userService.js';
 
 export const authenticateToken = async (req, res, next) => {
   try {
@@ -11,7 +11,7 @@ export const authenticateToken = async (req, res, next) => {
     }
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const user = await User.findById(decoded.userId);
+  const user = await findUserById(decoded.userId);
 
     if (!user) {
       return res.status(401).json({ message: 'Invalid token' });

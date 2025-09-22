@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import HeroSection from '../models/HeroSection.js';
 import ServicesSection from '../models/ServicesSection.js';
 import PricingSection from '../models/PricingSection.js';
@@ -14,11 +15,11 @@ import {
   getAllContent as fsGetAllContent
 } from '../storage/fileStore.js';
 
-const useFile = process.env.USE_FILE_DB === 'true';
+const isFileMode = () => process.env.USE_FILE_DB === 'true';
 
 // HERO
 export async function getHero() {
-  if (useFile) return fsGetHero();
+  if (isFileMode()) return fsGetHero();
   let hero = await HeroSection.findOne({ isActive: true });
   if (!hero) {
     hero = new HeroSection({});
@@ -28,7 +29,7 @@ export async function getHero() {
 }
 
 export async function updateHero(data) {
-  if (useFile) return fsUpdateHero(data);
+  if (isFileMode()) return fsUpdateHero(data);
   let hero = await HeroSection.findOne({ isActive: true });
   if (!hero) hero = new HeroSection(data); else Object.assign(hero, data);
   await hero.save();
@@ -37,14 +38,14 @@ export async function updateHero(data) {
 
 // SERVICES
 export async function getServices() {
-  if (useFile) return fsGetServices();
+  if (isFileMode()) return fsGetServices();
   let services = await ServicesSection.findOne({ isActive: true });
   if (!services) { services = new ServicesSection({}); await services.save(); }
   return services;
 }
 
 export async function updateServices(data) {
-  if (useFile) return fsUpdateServices(data);
+  if (isFileMode()) return fsUpdateServices(data);
   let services = await ServicesSection.findOne({ isActive: true });
   if (!services) services = new ServicesSection(data); else Object.assign(services, data);
   await services.save();
@@ -53,14 +54,14 @@ export async function updateServices(data) {
 
 // PRICING
 export async function getPricing() {
-  if (useFile) return fsGetPricing();
+  if (isFileMode()) return fsGetPricing();
   let pricing = await PricingSection.findOne({ isActive: true });
   if (!pricing) { pricing = new PricingSection({}); await pricing.save(); }
   return pricing;
 }
 
 export async function updatePricing(data) {
-  if (useFile) return fsUpdatePricing(data);
+  if (isFileMode()) return fsUpdatePricing(data);
   let pricing = await PricingSection.findOne({ isActive: true });
   if (!pricing) pricing = new PricingSection(data); else Object.assign(pricing, data);
   await pricing.save();
@@ -69,14 +70,14 @@ export async function updatePricing(data) {
 
 // CONTACT
 export async function getContact() {
-  if (useFile) return fsGetContact();
+  if (isFileMode()) return fsGetContact();
   let contact = await ContactSection.findOne({ isActive: true });
   if (!contact) { contact = new ContactSection({}); await contact.save(); }
   return contact;
 }
 
 export async function updateContact(data) {
-  if (useFile) return fsUpdateContact(data);
+  if (isFileMode()) return fsUpdateContact(data);
   let contact = await ContactSection.findOne({ isActive: true });
   if (!contact) contact = new ContactSection(data); else Object.assign(contact, data);
   await contact.save();
@@ -84,7 +85,7 @@ export async function updateContact(data) {
 }
 
 export async function getAll() {
-  if (useFile) return fsGetAllContent();
+  if (isFileMode()) return fsGetAllContent();
   const [hero, services, pricing, contact] = await Promise.all([
     HeroSection.findOne({ isActive: true }),
     ServicesSection.findOne({ isActive: true }),

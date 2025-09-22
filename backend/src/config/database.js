@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import logger from '../utils/logger.js';
 
 const connectDB = async () => {
   try {
@@ -7,7 +8,7 @@ const connectDB = async () => {
       useUnifiedTopology: true,
     });
 
-    console.log(`✅ MongoDB Connected: ${conn.connection.host}`);
+  logger.log(`✅ MongoDB Connected: ${conn.connection.host}`);
     
     // Create admin user if it doesn't exist
     await createDefaultAdmin();
@@ -33,9 +34,9 @@ const createDefaultAdmin = async () => {
       });
       
       await admin.save();
-      console.log('✅ Default admin user created');
+  logger.log('✅ Default admin user created');
     } else {
-      console.log('✅ Admin user already exists');
+  logger.log('✅ Admin user already exists');
     }
   } catch (error) {
     console.error('❌ Error creating admin user:', error.message);

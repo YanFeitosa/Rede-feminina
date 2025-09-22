@@ -179,7 +179,8 @@ function useToast() {
         listeners.splice(index, 1)
       }
     }
-  }, [state])
+    // Empty dependency array ensures we subscribe only once on mount
+  }, [])
 
   return {
     ...state,

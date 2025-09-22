@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { LogOut, Settings, Home, DollarSign, Phone, Upload } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
@@ -25,37 +25,7 @@ const AdminDashboard = ({ user, token, onLogout }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-warm">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-          <div>
-            <h1 className="text-2xl font-bold text-foreground">
-              Painel Administrativo
-            </h1>
-            <p className="text-sm text-muted-foreground">
-              Rede Feminina - Gerenciamento de Conteúdo
-            </p>
-          </div>
-          
-          <div className="flex items-center gap-4">
-            <span className="text-sm text-muted-foreground">
-              Bem-vindo, {user?.email}
-            </span>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleLogout}
-              className="gap-2"
-            >
-              <LogOut className="w-4 h-4" />
-              Sair
-            </Button>
-          </div>
-        </div>
-      </header>
-
-      {/* Main Content */}
+    <div className="min-h-screen">
       <main className="container mx-auto px-6 py-8">
         <Card>
           <CardContent className="p-6">
@@ -106,7 +76,18 @@ const AdminDashboard = ({ user, token, onLogout }) => {
               </div>
             </Tabs>
           </CardContent>
-        </Card>
+  </Card>
+        <div className="mt-6 flex justify-end">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={handleLogout}
+            className="gap-2"
+          >
+            <LogOut className="w-4 h-4" />
+            Sair
+          </Button>
+        </div>
       </main>
     </div>
   );

@@ -1,14 +1,23 @@
-import { useTheme } from "next-themes"
+import * as React from "react"
 import { Toaster as Sonner, toast } from "sonner"
 
 type ToasterProps = React.ComponentProps<typeof Sonner>
 
 const Toaster = ({ ...props }: ToasterProps) => {
-  const { theme = "system" } = useTheme()
+  const [theme, setTheme] = React.useState<"light" | "dark">("light")
+
+  React.useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return
+    const mql = window.matchMedia("(prefers-color-scheme: dark)")
+    const apply = () => setTheme(mql.matches ? "dark" : "light")
+    apply()
+    mql.addEventListener("change", apply)
+    return () => mql.removeEventListener("change", apply)
+  }, [])
 
   return (
     <Sonner
-      theme={theme as ToasterProps["theme"]}
+      theme={theme}
       className="toaster group"
       toastOptions={{
         classNames: {
