@@ -114,7 +114,9 @@ const Carousel = React.forwardRef<
       api.on("select", onSelect)
 
       return () => {
+        // Remove both listeners that were added to avoid memory leaks or duplicate firing
         api?.off("select", onSelect)
+        api?.off("reInit", onSelect)
       }
     }, [api, onSelect])
 
