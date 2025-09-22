@@ -7,6 +7,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 import connectDB from './config/database.js';
+import { initFileStore } from './storage/fileStore.js';
 import authRoutes from './routes/auth.js';
 import contentRoutes from './routes/content.js';
 import uploadRoutes from './routes/upload.js';
@@ -21,8 +22,14 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Connect to database
-connectDB();
+// Storage mode
+if (process.env.USE_FILE_DB === 'true') {
+  console.log('🗂️ Using file-based storage (no MongoDB)');
+  initFileStore();
+} else {
+  // Connect to MongoDB
+  connectDB();
+}
 
 // Security middleware
 app.use(helmet());

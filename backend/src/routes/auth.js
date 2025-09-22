@@ -1,8 +1,8 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import Joi from 'joi';
-import User from '../models/User.js';
 import { authenticateToken } from '../middleware/auth.js';
+import { findUserByEmail, validatePassword, updateLastLogin, sanitizeUser, changeUserPassword } from '../services/userService.js';
 
 const router = express.Router();
 
@@ -35,33 +35,28 @@ router.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
     // Find user
-    const user = await User.findOne({ email });
+    const user = await findUserByEmail(email);
     if (!user) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
     // Check password
-    const isValidPassword = await user.comparePassword(password);
+    const isValidPassword = await validatePassword(user, password);
     if (!isValidPassword) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
     // Update last login
-    user.lastLogin = new Date();
-    await user.save();
+    await updateLastLogin(user);
 
     // Generate token
-    const token = generateToken(user._id);
+    const userId = user._id || user.id; // file mode uses id
+    const token = generateToken(userId);
 
     res.json({
       message: 'Login successful',
       token,
-      user: {
-        id: user._id,
-        email: user.email,
-        role: user.role,
-        lastLogin: user.lastLogin
-      }
+      user: sanitizeUser(user)
     });
   } catch (error) {
     console.error('Login error:', error);
@@ -96,14 +91,10 @@ router.post('/change-password', authenticateToken, async (req, res) => {
     const { currentPassword, newPassword } = req.body;
 
     // Verify current password
-    const isValidPassword = await req.user.comparePassword(currentPassword);
-    if (!isValidPassword) {
+    const changed = await changeUserPassword(req.user, currentPassword, newPassword);
+    if (!changed) {
       return res.status(400).json({ message: 'Current password is incorrect' });
     }
-
-    // Update password
-    req.user.password = newPassword;
-    await req.user.save();
 
     res.json({ message: 'Password changed successfully' });
   } catch (error) {

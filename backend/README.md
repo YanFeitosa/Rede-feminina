@@ -23,8 +23,14 @@ Este projeto agora inclui um backend completo para gerenciamento dinâmico do co
 ## 📋 Pré-requisitos
 
 - Node.js (versão 16 ou superior)
-- MongoDB (local ou MongoDB Atlas)
-- Bun (para o frontend)
+- (Opcional) MongoDB local ou Atlas. Se não quiser instalar, use o modo de armazenamento em arquivo.
+
+### Modo sem MongoDB
+Adicione no `.env`:
+```
+USE_FILE_DB=true
+```
+Isso cria um arquivo `backend/data/data.json` para persistir usuários e conteúdo.
 
 ## 🛠️ Instalação
 
@@ -43,13 +49,13 @@ Edite o arquivo `backend/.env` com suas configurações:
 NODE_ENV=development
 PORT=3001
 
-# MongoDB - Configure sua connection string
+# MongoDB - Configure se for usar Mongo (deixe como está se estiver em modo arquivo)
 MONGODB_URI=mongodb://localhost:27017/rede-feminina
 
 # JWT Secret - MUDE ESTA CHAVE EM PRODUÇÃO
 JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
 
-# Credenciais do admin padrão
+# Credenciais do admin padrão (serão criadas no Mongo ou no arquivo)
 ADMIN_EMAIL=admin@redefeminina.org
 ADMIN_PASSWORD=admin123
 
@@ -71,21 +77,21 @@ O backend estará rodando em: http://localhost:3001
 
 ```bash
 # Na raiz do projeto
-bun install
+npm install
 ```
 
 ### 5. Iniciar o Frontend
 
 ```bash
-bun dev
+npm run dev
 ```
 
-O frontend estará rodando em: http://localhost:5173
+O frontend estará rodando em: http://localhost:8080
 
 ## 👤 Acesso Administrativo
 
 ### Login no Painel Admin
-- URL: http://localhost:5173/admin
+- URL: http://localhost:8080/admin
 - Email: admin@redefeminina.org
 - Senha: admin123
 
