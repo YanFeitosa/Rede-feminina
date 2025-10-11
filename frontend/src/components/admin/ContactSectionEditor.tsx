@@ -8,6 +8,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { useToast } from '@/hooks/use-toast';
 import { Save, Loader2, Plus, Trash2 } from 'lucide-react';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+
 const ContactSectionEditor = ({ token }) => {
   const [contactData, setContactData] = useState({
     contactMethods: []
@@ -22,7 +24,7 @@ const ContactSectionEditor = ({ token }) => {
 
   const fetchContactData = async () => {
     try {
-      const response = await fetch('http://localhost:3001/api/content/contact');
+      const response = await fetch(`${API_BASE_URL}/api/content/contact`);
       const data = await response.json();
       
       if (response.ok) {
@@ -77,7 +79,7 @@ const ContactSectionEditor = ({ token }) => {
     setIsSaving(true);
     
     try {
-      const response = await fetch('http://localhost:3001/api/content/contact', {
+      const response = await fetch(`${API_BASE_URL}/api/content/contact`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

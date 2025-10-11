@@ -5,7 +5,9 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
-import { Save, Loader2 } from 'lucide-react';
+import { Loader2, Save } from 'lucide-react';
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
 
 const ServicesSectionEditor = ({ token }) => {
   const [servicesData, setServicesData] = useState({
@@ -24,7 +26,7 @@ const ServicesSectionEditor = ({ token }) => {
 
   const fetchServicesData = async () => {
     try {
-      const response = await fetch('http://localhost:3001/api/content/services');
+      const response = await fetch(`${API_BASE_URL}/api/content/services`);
       const data = await response.json();
       
       if (response.ok) {
@@ -53,7 +55,7 @@ const ServicesSectionEditor = ({ token }) => {
     setIsSaving(true);
     
     try {
-      const response = await fetch('http://localhost:3001/api/content/services', {
+      const response = await fetch(`${API_BASE_URL}/api/content/services`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

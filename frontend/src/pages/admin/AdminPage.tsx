@@ -3,6 +3,8 @@ import AdminLogin from './AdminLogin';
 import AdminDashboard from './AdminDashboard';
 import Header from '@/components/Header';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:3000";
+
 const AdminPage = () => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
@@ -23,7 +25,7 @@ const AdminPage = () => {
 
   const verifyToken = async (token, userData) => {
     try {
-      const response = await fetch('http://localhost:3001/api/auth/verify', {
+      const response = await fetch(`${API_BASE_URL}/api/auth/verify`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

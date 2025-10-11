@@ -1,7 +1,12 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
 
 const PricingSection = () => {
+  const navigate = useNavigate();
   const [pricingData, setPricingData] = useState({
     sectionSubtitle: "SUA AJUDA FAZ A DIFERENÇA",
     title: "Apoie. Inspire. Transforme vidas.",
@@ -20,7 +25,7 @@ const PricingSection = () => {
 
   const fetchPricingData = async () => {
     try {
-      const response = await fetch('http://localhost:3001/api/content/pricing');
+      const response = await fetch(`${API_BASE_URL}/api/content/pricing`);
       if (response.ok) {
         const data = await response.json();
         setPricingData(data);
@@ -32,13 +37,8 @@ const PricingSection = () => {
   };
 
   const handleButtonClick = () => {
-    if (pricingData.buttonLink && pricingData.buttonLink !== '#') {
-      if (pricingData.buttonLink.startsWith('http')) {
-        window.open(pricingData.buttonLink, '_blank');
-      } else {
-        window.location.href = pricingData.buttonLink;
-      }
-    }
+    // Always navigate to donations page
+    navigate('/doacoes');
   };
 
   return (

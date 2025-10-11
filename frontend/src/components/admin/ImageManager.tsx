@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
-import { Upload, Trash2, Loader2, Image as ImageIcon } from 'lucide-react';
+import { Loader2, Upload, Trash2, Copy, ImageIcon } from 'lucide-react';
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
 
 const ImageManager = ({ token }) => {
   const [images, setImages] = useState([]);
@@ -16,7 +18,7 @@ const ImageManager = ({ token }) => {
 
   const fetchImages = async () => {
     try {
-      const response = await fetch('http://localhost:3001/api/upload/images', {
+      const response = await fetch(`${API_BASE_URL}/api/upload/images`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -47,7 +49,7 @@ const ImageManager = ({ token }) => {
     setIsUploading(true);
 
     try {
-      const response = await fetch('http://localhost:3001/api/upload/image', {
+      const response = await fetch(`${API_BASE_URL}/api/upload/image`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -85,7 +87,7 @@ const ImageManager = ({ token }) => {
     if (!confirm('Tem certeza que deseja excluir esta imagem?')) return;
 
     try {
-      const response = await fetch(`http://localhost:3001/api/upload/image/${filename}`, {
+      const response = await fetch(`${API_BASE_URL}/api/upload/image/${filename}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -116,7 +118,7 @@ const ImageManager = ({ token }) => {
   };
 
   const copyToClipboard = (url) => {
-    const fullUrl = `http://localhost:3001${url}`;
+    const fullUrl = `${API_BASE_URL}${url}`;
     navigator.clipboard.writeText(fullUrl).then(() => {
       toast({
         title: 'URL copiada!',
@@ -193,7 +195,7 @@ const ImageManager = ({ token }) => {
               <Card key={image.filename} className="overflow-hidden">
                 <div className="aspect-video relative">
                   <img
-                    src={`http://localhost:3001${image.url}`}
+                    src={`${API_BASE_URL}${image.url}`}
                     alt={image.filename}
                     className="w-full h-full object-cover"
                   />

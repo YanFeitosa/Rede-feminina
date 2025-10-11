@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+
 const ServicesSection = () => {
   const [servicesData, setServicesData] = useState({
     title: "Transformamos dor em força",
@@ -15,7 +17,7 @@ const ServicesSection = () => {
 
   const fetchServicesData = async () => {
     try {
-      const response = await fetch('http://localhost:3001/api/content/services');
+      const response = await fetch(`${API_BASE_URL}/api/content/services`);
       if (response.ok) {
         const data = await response.json();
         setServicesData(data);
