@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo_rfcc.webp";
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Heart } from 'lucide-react';
 
 const ADMIN_URL = import.meta.env.VITE_ADMIN_URL || "http://localhost:8080/admin";
 
@@ -10,6 +12,7 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ adminMode = false, onNavigateHome }) => {
+  const navigate = useNavigate();
   // Helper to navigate back to landing page
   const goHome = () => {
     if (onNavigateHome) onNavigateHome();
@@ -72,14 +75,24 @@ const Header: React.FC<HeaderProps> = ({ adminMode = false, onNavigateHome }) =>
               Ajuda
             </a>
             {!adminMode && (
-              <Button
-                variant="outline"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-                type="button"
-                onClick={() => window.location.href = ADMIN_URL}
-              >
-                Login
-              </Button>
+              <>
+                <Button
+                  className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white"
+                  type="button"
+                  onClick={() => navigate('/doacoes')}
+                >
+                  <Heart className="w-4 h-4 mr-2" />
+                  Doar
+                </Button>
+                <Button
+                  variant="outline"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  type="button"
+                  onClick={() => window.location.href = ADMIN_URL}
+                >
+                  Login
+                </Button>
+              </>
             )}
           </nav>
           {adminMode && (

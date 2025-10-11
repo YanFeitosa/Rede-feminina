@@ -7,6 +7,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { Save, Loader2 } from 'lucide-react';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+
 const HeroSectionEditor = ({ token }) => {
   const [heroData, setHeroData] = useState({
     title: '',
@@ -26,7 +28,7 @@ const HeroSectionEditor = ({ token }) => {
 
   const fetchHeroData = async () => {
     try {
-      const response = await fetch('http://localhost:3001/api/content/hero');
+      const response = await fetch(`${API_BASE_URL}/api/content/hero`);
       const data = await response.json();
       
       if (response.ok) {
@@ -55,7 +57,7 @@ const HeroSectionEditor = ({ token }) => {
     setIsSaving(true);
     
     try {
-      const response = await fetch('http://localhost:3001/api/content/hero', {
+      const response = await fetch(`${API_BASE_URL}/api/content/hero`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

@@ -7,6 +7,8 @@ import img04 from "@/assets/img_04.png";
 import img05 from "@/assets/img_05.png";
 import img06 from "@/assets/img_06.png";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+
 const HeroSection = () => {
   const [heroData, setHeroData] = useState({
     title: "Juntos por vidas",
@@ -34,7 +36,7 @@ const HeroSection = () => {
 
   const fetchHeroData = async () => {
     try {
-      const response = await fetch('http://localhost:3001/api/content/hero');
+      const response = await fetch(`${API_BASE_URL}/api/content/hero`);
       if (response.ok) {
         const data = await response.json();
         setHeroData(data);
@@ -60,7 +62,7 @@ const HeroSection = () => {
   // Use API images if available, otherwise use fallback images
   const imagesToDisplay = heroData.images && heroData.images.length > 0 
     ? heroData.images.map(img => ({
-        src: `http://localhost:3001${img.url}`,
+        src: `${API_BASE_URL}${img.url}`,
         alt: img.alt
       }))
     : fallbackImages;
