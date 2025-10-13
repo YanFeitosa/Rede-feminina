@@ -46,7 +46,7 @@ export async function getUserByEmail(email) {
   return data.users.find(u => u.email.toLowerCase() === email.toLowerCase()) || null;
 }
 
-export async function createUser({ email, password, role = 'admin' }) {
+export async function createUser({ email, password, role = 'organization' }) {
   const data = await loadData();
   const existing = data.users.find(u => u.email.toLowerCase() === email.toLowerCase());
   if (existing) return existing;
@@ -88,7 +88,7 @@ export async function ensureDefaultAdmin() {
   if (!email || !password) return;
   const existing = await getUserByEmail(email);
   if (!existing) {
-    await createUser({ email, password, role: 'admin' });
+    await createUser({ email, password, role: 'organization' });
   logger.log('✅ Default admin user (file DB) created');
   } else {
   logger.log('✅ Admin user (file DB) already exists');

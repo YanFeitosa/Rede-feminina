@@ -30,7 +30,7 @@ const createDefaultAdmin = async () => {
       const admin = new User({
         email: process.env.ADMIN_EMAIL,
         password: process.env.ADMIN_PASSWORD,
-        role: 'admin'
+        role: 'organization'
       });
       
       await admin.save();
